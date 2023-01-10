@@ -3,11 +3,11 @@ pragma solidity ^0.8.13;
 
 import "forge-std/Test.sol";
 import "../../src/side-entrance/SideEntranceLenderPool.sol";
-import "../../src/side-entrance/FlashLoanReceiver.sol";
+import "../../src/side-entrance/Attacker.sol";
 
 contract TrusterTest is Test {
     SideEntranceLenderPool public pool;
-    FlashLoanReceiver public receiver;
+    Attacker public attackerContract;
 
     address public deployer = address(1);
     address public attacker = address(2);
@@ -27,9 +27,9 @@ contract TrusterTest is Test {
     function testExploit() public {
         /** YOUR EXPLOIT GOES HERE */
         startHoax(attacker);
-        receiver = new FlashLoanReceiver(payable(address(pool)));
-        receiver.executeFlashLoan(ETHER_IN_POOL);
-        receiver.withdraw();
+        attackerContract = new Attacker(payable(address(pool)));
+        attackerContract.executeFlashLoan(ETHER_IN_POOL);
+        attackerContract.withdraw();
         vm.stopPrank();
 
         /** SUCCESS CONDITION */

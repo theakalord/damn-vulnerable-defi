@@ -9,9 +9,7 @@ interface IPool {
     function withdraw() external;
 }
 
-contract FlashLoanReceiver {
-    using SafeMath for uint256;
-    using Address for address payable;
+contract Attacker {
 
     address payable private pool;
     address private owner;
