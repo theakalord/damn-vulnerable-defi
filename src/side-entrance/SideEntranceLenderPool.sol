@@ -18,7 +18,7 @@ contract SideEntranceLenderPool {
     function withdraw() external {
         uint256 amountToWithdraw = balances[msg.sender];
         balances[msg.sender] = 0;
-        payable(msg.sender).send(amountToWithdraw);
+        payable(msg.sender).sendValue(amountToWithdraw);
     }
 
     function flashLoan(uint256 amount) external {

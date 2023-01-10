@@ -11,6 +11,8 @@ interface IPool {
 
 contract Attacker {
 
+    using Address for address payable;
+
     address payable private pool;
     address private owner;
 
@@ -33,7 +35,7 @@ contract Attacker {
     function withdraw() external {
         require(msg.sender == owner, "Only owner can execute withdraw");
         IPool(pool).withdraw();
-        payable(msg.sender).send(address(this).balance);
+        payable(msg.sender).sendValue(address(this).balance);
     }
 
     // Allow deposits of ETH
