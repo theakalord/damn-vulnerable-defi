@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.13;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
@@ -7,15 +8,14 @@ interface IPool {
 }
 
 interface IGovernance {
-    function queueAction(address,bytes calldata,uint256) external;
+    function queueAction(address, bytes calldata, uint256) external;
 }
 
 interface IGovernanceToken {
     function snapshot() external;
 }
 
-contract Attacker {
-
+contract SelfieAttacker {
     address private pool;
     address private governance;
     address private owner;

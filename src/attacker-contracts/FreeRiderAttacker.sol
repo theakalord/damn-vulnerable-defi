@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.13;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
@@ -7,7 +8,7 @@ import "../../src/uniswap/IUniswapV2Router02.sol";
 import "../../src/free-rider/FreeRiderNFTMarketplace.sol";
 import "../../src/IWETH.sol";
 
-contract Attacker {
+contract FreeRiderAttacker {
     using Address for address payable;
 
     IUniswapV2Pair private pair;

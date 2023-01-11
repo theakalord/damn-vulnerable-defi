@@ -5,7 +5,7 @@ import "forge-std/Test.sol";
 import "@gnosis.pm/safe-contracts/contracts/proxies/GnosisSafeProxyFactory.sol";
 import "../../src/DamnValuableToken.sol";
 import "../../src/backdoor/WalletRegistry.sol";
-import "../../src/backdoor/Attacker.sol";
+import "../../src/attacker-contracts/BackdoorAttacker.sol";
 
 contract BackdoorTest is Test {
     DamnValuableToken public token;
@@ -53,7 +53,7 @@ contract BackdoorTest is Test {
     function testExploit() public {
         /** YOUR EXPLOIT GOES HERE */
         startHoax(attacker);
-        Attacker attackerContract = new Attacker();
+        BackdoorAttacker attackerContract = new BackdoorAttacker();
         attackerContract.attack(
             walletFactory,
             address(masterCopy),

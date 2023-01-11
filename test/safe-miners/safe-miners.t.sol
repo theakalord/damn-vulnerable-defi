@@ -3,7 +3,7 @@ pragma solidity ^0.8.13;
 
 import "forge-std/Test.sol";
 import "../../src/DamnValuableToken.sol";
-import "../../src/safe-miners/Attacker.sol";
+import "../../src/attacker-contracts/SafeMinersAttacker.sol";
 
 contract SafeMinersTest is Test {
     DamnValuableToken public token;
@@ -34,7 +34,7 @@ contract SafeMinersTest is Test {
         /** YOUR EXPLOIT GOES HERE */
         startHoax(attacker);
         for (uint256 i; i != 5; ++i) {
-            new Attacker(attacker, token, 80);
+            new SafeMinersAttacker(attacker, token, 80);
         }
         vm.stopPrank();
 

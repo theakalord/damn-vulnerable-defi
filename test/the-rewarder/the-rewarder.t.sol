@@ -7,7 +7,7 @@ import "../../src/the-rewarder/FlashLoanerPool.sol";
 import "../../src/the-rewarder/TheRewarderPool.sol";
 import "../../src/the-rewarder/RewardToken.sol";
 import "../../src/the-rewarder/AccountingToken.sol";
-import "../../src/the-rewarder/Attacker.sol";
+import "../../src/attacker-contracts/TheRewarderAttacker.sol";
 
 contract TheRewarderTest is Test {
     DamnValuableToken public liquidityToken;
@@ -15,7 +15,6 @@ contract TheRewarderTest is Test {
     TheRewarderPool public rewarderPool;
     RewardToken public rewardToken;
     AccountingToken public accountingToken;
-    Attacker public attackerContract;
 
     address public deployer = address(1);
     address public attacker = address(2);
@@ -74,7 +73,11 @@ contract TheRewarderTest is Test {
         /** YOUR EXPLOIT GOES HERE */
         startHoax(attacker);
         vm.warp(block.timestamp + 5 days);
-        attackerContract = new Attacker(address(liquidityToken), address(rewarderPool), address(flashLoanPool));
+        TheRewarderAttacker attackerContract = new TheRewarderAttacker(
+            address(liquidityToken),
+            address(rewarderPool),
+            address(flashLoanPool)
+        );
         attackerContract.executeFlashLoan(TOKENS_IN_LENDER_POOL);
         vm.stopPrank();
 

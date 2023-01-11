@@ -5,10 +5,10 @@ import "forge-std/Test.sol";
 import "../../src/DamnValuableToken.sol";
 import "../../src/free-rider/FreeRiderBuyer.sol";
 import "../../src/free-rider/FreeRiderNFTMarketplace.sol";
-import "../../src/free-rider/Attacker.sol";
 import "../../src/uniswap/IUniswapV2Factory.sol";
 import "../../src/uniswap/IUniswapV2Pair.sol";
 import "../../src/uniswap/IUniswapV2Router02.sol";
+import "../../src/attacker-contracts/FreeRiderAttacker.sol";
 
 contract FreeRiderTest is Test {
     address public weth;
@@ -109,7 +109,7 @@ contract FreeRiderTest is Test {
     function testExploit() public {
         /** YOUR EXPLOIT GOES HERE */
         startHoax(attacker, attacker, 0.5 ether);
-        Attacker attackerContract = new Attacker(
+        FreeRiderAttacker attackerContract = new FreeRiderAttacker(
             address(uniswapPair),
             address(uniswapRouter),
             payable(address(marketplace)),

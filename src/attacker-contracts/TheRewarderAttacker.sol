@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.13;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
@@ -8,18 +9,23 @@ interface IFlashLoanerPool {
 
 interface IRewarderPool {
     function rewardToken() external view returns (address);
+
     function deposit(uint256) external;
+
     function withdraw(uint256) external;
 }
 
-contract Attacker {
-
+contract TheRewarderAttacker {
     address private token;
     address private pool;
     address private flashLoaner;
     address private owner;
 
-    constructor(address tokenAddress, address poolAddress, address flashLoanerAddress) {
+    constructor(
+        address tokenAddress,
+        address poolAddress,
+        address flashLoanerAddress
+    ) {
         token = tokenAddress;
         pool = poolAddress;
         flashLoaner = flashLoanerAddress;
