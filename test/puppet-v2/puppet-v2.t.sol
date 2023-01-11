@@ -4,22 +4,15 @@ pragma solidity ^0.8.13;
 import "forge-std/Test.sol";
 import "../../src/DamnValuableToken.sol";
 import "../../src/puppet-v2/PuppetV2Pool.sol";
-import "../../src/helpers/DeployBytecode.sol";
 import "../../src/uniswap/IUniswapV2Factory.sol";
 import "../../src/uniswap/IUniswapV2Pair.sol";
 import "../../src/uniswap/IUniswapV2Router02.sol";
-
-interface IWETH {
-    function deposit() external payable;
-
-    function withdraw(uint256) external;
-}
+import "../../src/IWETH.sol";
 
 contract PuppetV2Test is Test {
     address public weth;
     DamnValuableToken public token;
     PuppetV2Pool public lendingPool;
-    address public exchangeTemplate;
     IUniswapV2Factory public uniswapFactory;
     IUniswapV2Router02 public uniswapRouter;
     IUniswapV2Pair public uniswapExchange;
