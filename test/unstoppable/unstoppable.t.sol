@@ -7,16 +7,16 @@ import "../../src/unstoppable/UnstoppableLender.sol";
 import "../../src/unstoppable/ReceiverUnstoppable.sol";
 
 contract UnstoppableTest is Test {
-    DamnValuableToken public token;
-    UnstoppableLender public pool;
-    ReceiverUnstoppable public receiverContract;
+    uint256 internal constant TOKENS_IN_POOL = 1000000 ether;
+    uint256 internal constant INITIAL_ATTACKER_BALANCE = 100 ether;
 
-    address public deployer = address(1);
-    address public attacker = address(2);
-    address public someUser = address(3);
+    DamnValuableToken internal token;
+    UnstoppableLender internal pool;
+    ReceiverUnstoppable internal receiverContract;
 
-    uint256 public constant TOKENS_IN_POOL = 1000000 ether;
-    uint256 public constant INITIAL_ATTACKER_BALANCE = 100 ether;
+    address internal deployer = address(1);
+    address internal attacker = address(2);
+    address internal someUser = address(3);
 
     function setUp() public {
         startHoax(deployer);

@@ -14,17 +14,17 @@ contract AdminUpgradeabilityProxy is TransparentUpgradeableProxy {
 }
 
 contract ClimberTest is Test {
-    DamnValuableToken public token;
-    ClimberVault public vault;
-    AdminUpgradeabilityProxy public proxy;
-    ClimberTimelock public timelock;
+    uint256 internal constant VAULT_TOKEN_BALANCE = 10000000 ether;
 
-    address public deployer = address(1);
-    address public attacker = address(2);
-    address public proposer = address(3);
-    address public sweeper = address(4);
+    DamnValuableToken internal token;
+    ClimberVault internal vault;
+    AdminUpgradeabilityProxy internal proxy;
+    ClimberTimelock internal timelock;
 
-    uint256 public constant VAULT_TOKEN_BALANCE = 10000000 ether;
+    address internal deployer = address(1);
+    address internal attacker = address(2);
+    address internal proposer = address(3);
+    address internal sweeper = address(4);
 
     function setUp() public {
         startHoax(deployer);

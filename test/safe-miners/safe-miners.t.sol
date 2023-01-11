@@ -6,13 +6,13 @@ import "../../src/DamnValuableToken.sol";
 import "../../src/attacker-contracts/SafeMinersAttacker.sol";
 
 contract SafeMinersTest is Test {
-    DamnValuableToken public token;
+    uint256 internal constant DEPOSIT_TOKEN_AMOUNT = 2000042 ether;
+    address internal constant DEPOSIT_ADDRESS = address(0x79658d35aB5c38B6b988C23D02e0410A380B8D5c);
 
-    address public deployer = address(0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266);
-    address public attacker = address(0x70997970C51812dc3A010C7d01b50e0d17dc79C8);
+    DamnValuableToken internal token;
 
-    uint256 public constant DEPOSIT_TOKEN_AMOUNT = 2000042 ether;
-    address public constant DEPOSIT_ADDRESS = address(0x79658d35aB5c38B6b988C23D02e0410A380B8D5c);
+    address internal deployer = address(0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266);
+    address internal attacker = address(0x70997970C51812dc3A010C7d01b50e0d17dc79C8);
 
     function setUp() public {
         startHoax(deployer);

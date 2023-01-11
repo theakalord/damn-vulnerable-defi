@@ -6,15 +6,15 @@ import "../../src/naive-receiver/FlashLoanReceiver.sol";
 import "../../src/naive-receiver/NaiveReceiverLenderPool.sol";
 
 contract NaiveReceiverTest is Test {
-    NaiveReceiverLenderPool public pool;
-    FlashLoanReceiver public receiver;
+    uint256 internal constant ETHER_IN_POOL = 1000 ether;
+    uint256 internal constant ETHER_IN_RECEIVER = 10 ether;
 
-    address public deployer = address(1);
-    address public attacker = address(2);
-    address public user = address(3);
+    NaiveReceiverLenderPool internal pool;
+    FlashLoanReceiver internal receiver;
 
-    uint256 public constant ETHER_IN_POOL = 1000 ether;
-    uint256 public constant ETHER_IN_RECEIVER = 10 ether;
+    address internal deployer = address(1);
+    address internal attacker = address(2);
+    address internal user = address(3);
 
     function setUp() public {
         startHoax(deployer);

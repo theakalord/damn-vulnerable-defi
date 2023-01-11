@@ -6,13 +6,13 @@ import "../../src/DamnValuableToken.sol";
 import "../../src/truster/TrusterLenderPool.sol";
 
 contract TrusterTest is Test {
-    DamnValuableToken public token;
-    TrusterLenderPool public pool;
+    uint256 internal constant TOKENS_IN_POOL = 1000000 ether;
 
-    address public deployer = address(1);
-    address public attacker = address(2);
+    DamnValuableToken internal token;
+    TrusterLenderPool internal pool;
 
-    uint256 public constant TOKENS_IN_POOL = 1000000 ether;
+    address internal deployer = address(1);
+    address internal attacker = address(2);
 
     function setUp() public {
         startHoax(deployer);

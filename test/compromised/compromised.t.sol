@@ -8,23 +8,22 @@ import "../../src/compromised/TrustfulOracle.sol";
 import "../../src/compromised/TrustfulOracleInitializer.sol";
 
 contract CompromisedTest is Test {
-
     using Address for address payable;
 
-    Exchange public exchange;
-    DamnValuableNFT public token;
-    TrustfulOracle public oracle;
+    uint256 internal constant EXCHANGE_INITIAL_ETH_BALANCE = 10000 ether;
+    uint256 internal constant INITIAL_NFT_PRICE = 999 ether;
 
-    address public deployer = address(1);
-    address public attacker = address(2);
-    address[] public sources = [
+    Exchange internal exchange;
+    DamnValuableNFT internal token;
+    TrustfulOracle internal oracle;
+
+    address internal deployer = address(1);
+    address internal attacker = address(2);
+    address[] internal sources = [
         address(0xA73209FB1a42495120166736362A1DfA9F95A105),
         address(0xe92401A4d3af5E446d93D11EEc806b1462b39D15),
         address(0x81A5D6E50C214044bE44cA0CB057fe119097850c)
     ];
-
-    uint256 public constant EXCHANGE_INITIAL_ETH_BALANCE = 10000 ether;
-    uint256 public constant INITIAL_NFT_PRICE = 999 ether;
 
     function setUp() public {
         startHoax(deployer);
@@ -51,7 +50,9 @@ contract CompromisedTest is Test {
         oracle = TrustfulOracle(initializer.oracle());
 
         // Deploy the exchange and get the associated ERC721 token
-        exchange = new Exchange{value: EXCHANGE_INITIAL_ETH_BALANCE}(address(oracle));
+        exchange = new Exchange{value: EXCHANGE_INITIAL_ETH_BALANCE}(
+            address(oracle)
+        );
         token = DamnValuableNFT(exchange.token());
 
         vm.stopPrank();

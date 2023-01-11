@@ -10,17 +10,17 @@ import "../../src/the-rewarder/AccountingToken.sol";
 import "../../src/attacker-contracts/TheRewarderAttacker.sol";
 
 contract TheRewarderTest is Test {
-    DamnValuableToken public liquidityToken;
-    FlashLoanerPool public flashLoanPool;
-    TheRewarderPool public rewarderPool;
-    RewardToken public rewardToken;
-    AccountingToken public accountingToken;
+    uint256 internal constant TOKENS_IN_LENDER_POOL = 1000000 ether;
 
-    address public deployer = address(1);
-    address public attacker = address(2);
-    address[] public users = [address(3), address(4), address(5), address(6)];
+    DamnValuableToken internal liquidityToken;
+    FlashLoanerPool internal flashLoanPool;
+    TheRewarderPool internal rewarderPool;
+    RewardToken internal rewardToken;
+    AccountingToken internal accountingToken;
 
-    uint256 public constant TOKENS_IN_LENDER_POOL = 1000000 ether;
+    address internal deployer = address(1);
+    address internal attacker = address(2);
+    address[] internal users = [address(3), address(4), address(5), address(6)];
 
     function setUp() public {
         startHoax(deployer);

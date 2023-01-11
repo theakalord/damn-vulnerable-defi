@@ -11,30 +11,30 @@ import "../../src/uniswap/IUniswapV2Router02.sol";
 import "../../src/attacker-contracts/FreeRiderAttacker.sol";
 
 contract FreeRiderTest is Test {
-    address public weth;
-    DamnValuableToken public token;
-    DamnValuableNFT public nft;
-    FreeRiderBuyer public buyerContract;
-    FreeRiderNFTMarketplace public marketplace;
-    IUniswapV2Factory public uniswapFactory;
-    IUniswapV2Router02 public uniswapRouter;
-    IUniswapV2Pair public uniswapPair;
-
-    address public deployer = address(1);
-    address public attacker = address(2);
-    address public buyer = address(3);
-
     // The NFT marketplace will have 6 tokens, at 15 ETH each
-    uint256 public constant NFT_PRICE = 15 ether;
-    uint8 public constant AMOUNT_OF_NFTS = 6;
-    uint256 public constant MARKETPLACE_INITIAL_ETH_BALANCE = 90 ether;
+    uint256 internal constant NFT_PRICE = 15 ether;
+    uint8 internal constant AMOUNT_OF_NFTS = 6;
+    uint256 internal constant MARKETPLACE_INITIAL_ETH_BALANCE = 90 ether;
 
     // The buyer will offer 45 ETH as payout for the job
-    uint256 public constant BUYER_PAYOUT = 45 ether;
+    uint256 internal constant BUYER_PAYOUT = 45 ether;
 
     // Initial reserves for the Uniswap v2 pool
-    uint256 public constant UNISWAP_INITIAL_TOKEN_RESERVE = 15000 ether;
-    uint256 public constant UNISWAP_INITIAL_WETH_RESERVE = 9000 ether;
+    uint256 internal constant UNISWAP_INITIAL_TOKEN_RESERVE = 15000 ether;
+    uint256 internal constant UNISWAP_INITIAL_WETH_RESERVE = 9000 ether;
+
+    address internal weth;
+    DamnValuableToken internal token;
+    DamnValuableNFT internal nft;
+    FreeRiderBuyer internal buyerContract;
+    FreeRiderNFTMarketplace internal marketplace;
+    IUniswapV2Factory internal uniswapFactory;
+    IUniswapV2Router02 internal uniswapRouter;
+    IUniswapV2Pair internal uniswapPair;
+
+    address internal deployer = address(1);
+    address internal attacker = address(2);
+    address internal buyer = address(3);
 
     function setUp() public {
         // mainnet fork

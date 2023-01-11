@@ -8,20 +8,20 @@ import "../../src/backdoor/WalletRegistry.sol";
 import "../../src/attacker-contracts/BackdoorAttacker.sol";
 
 contract BackdoorTest is Test {
-    DamnValuableToken public token;
-    GnosisSafe public masterCopy;
-    GnosisSafeProxyFactory public walletFactory;
-    WalletRegistry public walletRegistry;
+    uint256 internal constant AMOUNT_TOKENS_DISTRIBUTED = 40 ether;
 
-    address public deployer = address(1);
-    address public attacker = address(2);
-    address public alice = address(3);
-    address public bob = address(4);
-    address public charlie = address(5);
-    address public david = address(6);
-    address[] public users = [alice, bob, charlie, david];
+    DamnValuableToken internal token;
+    GnosisSafe internal masterCopy;
+    GnosisSafeProxyFactory internal walletFactory;
+    WalletRegistry internal walletRegistry;
 
-    uint256 public constant AMOUNT_TOKENS_DISTRIBUTED = 40 ether;
+    address internal deployer = address(1);
+    address internal attacker = address(2);
+    address internal alice = address(3);
+    address internal bob = address(4);
+    address internal charlie = address(5);
+    address internal david = address(6);
+    address[] internal users = [alice, bob, charlie, david];
 
     function setUp() public {
         startHoax(deployer);

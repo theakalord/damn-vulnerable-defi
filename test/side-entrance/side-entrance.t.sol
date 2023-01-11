@@ -6,12 +6,12 @@ import "../../src/side-entrance/SideEntranceLenderPool.sol";
 import "../../src/attacker-contracts/SideEntranceAttacker.sol";
 
 contract TrusterTest is Test {
-    SideEntranceLenderPool public pool;
+    uint256 internal constant ETHER_IN_POOL = 1000 ether;
 
-    address public deployer = address(1);
-    address public attacker = address(2);
+    SideEntranceLenderPool internal pool;
 
-    uint256 public constant ETHER_IN_POOL = 1000 ether;
+    address internal deployer = address(1);
+    address internal attacker = address(2);
 
     function setUp() public {
         startHoax(deployer);

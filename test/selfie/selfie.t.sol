@@ -8,15 +8,15 @@ import "../../src/selfie/SimpleGovernance.sol";
 import "../../src/attacker-contracts/SelfieAttacker.sol";
 
 contract SelfieTest is Test {
-    DamnValuableTokenSnapshot public token;
-    SelfiePool public pool;
-    SimpleGovernance public governance;
+    uint256 internal constant TOKEN_INITIAL_SUPPLY = 2000000 ether;
+    uint256 internal constant TOKENS_IN_POOL = 1500000 ether;
 
-    address public deployer = address(1);
-    address public attacker = address(2);
+    DamnValuableTokenSnapshot internal token;
+    SelfiePool internal pool;
+    SimpleGovernance internal governance;
 
-    uint256 public constant TOKEN_INITIAL_SUPPLY = 2000000 ether;
-    uint256 public constant TOKENS_IN_POOL = 1500000 ether;
+    address internal deployer = address(1);
+    address internal attacker = address(2);
 
     function setUp() public {
         startHoax(deployer);

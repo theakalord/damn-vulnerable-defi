@@ -10,21 +10,21 @@ import "../../src/uniswap/IUniswapV2Router02.sol";
 import "../../src/IWETH.sol";
 
 contract PuppetV2Test is Test {
-    address public weth;
-    DamnValuableToken public token;
-    PuppetV2Pool public lendingPool;
-    IUniswapV2Factory public uniswapFactory;
-    IUniswapV2Router02 public uniswapRouter;
-    IUniswapV2Pair public uniswapExchange;
+    uint256 internal constant UNISWAP_INITIAL_TOKEN_RESERVE = 100 ether;
+    uint256 internal constant UNISWAP_INITIAL_WETH_RESERVE = 10 ether;
 
-    address public deployer = address(1);
-    address public attacker = address(2);
+    uint256 internal constant ATTACKER_INITAL_TOKEN_BALANCE = 10000 ether;
+    uint256 internal constant POOL_INITIAL_TOKEN_BALANCE = 1000000 ether;
 
-    uint256 public constant UNISWAP_INITIAL_TOKEN_RESERVE = 100 ether;
-    uint256 public constant UNISWAP_INITIAL_WETH_RESERVE = 10 ether;
+    address internal weth;
+    DamnValuableToken internal token;
+    PuppetV2Pool internal lendingPool;
+    IUniswapV2Factory internal uniswapFactory;
+    IUniswapV2Router02 internal uniswapRouter;
+    IUniswapV2Pair internal uniswapExchange;
 
-    uint256 public constant ATTACKER_INITAL_TOKEN_BALANCE = 10000 ether;
-    uint256 public constant POOL_INITIAL_TOKEN_BALANCE = 1000000 ether;
+    address internal deployer = address(1);
+    address internal attacker = address(2);
 
     function setUp() public {
         // mainnet fork
